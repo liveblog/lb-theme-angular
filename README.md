@@ -1,9 +1,9 @@
 # Angular Based Theme
 
-<table><tr><td>__Extends__</td><td>nothing</td></tr></table>
+<table><tr><td>Extends</td><td>nothing</td></tr></table>
 
 | Options | Key | Type | Default value
-|-|-|-|-
+|---------|-----|------|--------------
 | Number of posts per page | postsPerPage | `number` | 20
 | Permalink delimiter | permalinkDelimiter | `string` | ?
 
