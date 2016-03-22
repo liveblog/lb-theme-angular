@@ -9,7 +9,7 @@
     transformBlog.$inject = ['fixProtocol']
     function transformBlog(fixProtocol) {
         return function(blog) {
-            if (blog.picture_url) {
+            if (blog.picture_url && blog.picture) {
                 var srcset = '';
                 angular.forEach(blog.picture.renditions, function(value) {
                     srcset += ', ' + fixProtocol(value.href) + ' ' + value.width + 'w';
@@ -66,7 +66,7 @@
                         post.mainItem = _completeUser(post.groups[1].refs[0].item);
                         // if an item has a commenter then that post hasComments.
                         post.hasComments = _.reduce(post.groups[1].refs, function(is, val) {
-                            return is || _.isUndefined(val.item.commenter);
+                            return is || !_.isUndefined(val.item.commenter);
                         }, false);
                         // `fullDetails` is a business logic that can be compiled from other objects.
                         post.fullDetails = post.hasComments;
