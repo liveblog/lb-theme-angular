@@ -127,13 +127,19 @@
              * Check to see if we need to require a higher page number
              */
             function checkStep() {
-                //if the number of new posts since the last pagination equals the items per page
-                var shift = self.newUpdatesApplied + self.uncountedPosts.length;
+                
+                var shift, step;
+                //if order is 'oldest_first' we only need to care about the removed posts
+                if (self.sort === 'oldest_first') {
+                    shift = self.newUpdatesApplied;
+                } else {
+                    shift = self.newUpdatesApplied + self.uncountedPosts.length;
+                }
                 // reset the counters as we need them fresh after a new page load
                 self.countedPosts = self.countedPosts.concat(self.uncountedPosts);
                 self.uncountedPosts = []; self.newUpdatesApplied = 0;
                 //this works well with both negative and positive shift
-                var step = Math.floor(shift / self.maxResults);
+                step = Math.floor(shift / self.maxResults);
                 return step;
             }
 
@@ -199,7 +205,7 @@
             }
 
             /**
-             * count the number of new items 
+             * process the new posts and keep the uncounted ones
              * to help the pagination process
              */
             function processNewPosts(updates) {
@@ -245,7 +251,11 @@
                             if (should_apply_all_updates) {
                                 addPost(post);
                                 if (self.countedPosts.indexOf(post) === -1) {
-                                    self.newUpdatesApplied ++;
+                                    //we don't need to advance the pagination if we have reversed order
+                                    if (self.sort !== 'oldest_first') {
+                                        self.newUpdatesApplied ++;
+                                    }
+                                    
                                 }
                             } else {
                                 newItems.push(post);
