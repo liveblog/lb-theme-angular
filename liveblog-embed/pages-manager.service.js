@@ -255,7 +255,6 @@
                                     if (self.sort !== 'oldest_first') {
                                         self.newUpdatesApplied ++;
                                     }
-                                    
                                 }
                             } else {
                                 newItems.push(post);
@@ -475,6 +474,10 @@
                  * Apply the given updates to the posts list
                  */
                 applyUpdates: applyUpdates,
+                /**
+                 * Update page manager with the dates of the latest posts
+                 */
+                updateLatestDates: updateLatestDates,
                 /**
                  * Return all the posts from the local pages
                  */
