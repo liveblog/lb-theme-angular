@@ -169,7 +169,7 @@
     transformOutput.$inject = ['advertisements'];
     function transformOutput(advertisements) {
         return function(output) {
-            if (output.collection !== null) {
+            if (output.collection) {
                 // pull the advertisements from the collections.
                 angular.forEach(output.collection.advertisements, function(ad){
                     advertisements.get({advertisementId: ad.advertisement_id},
