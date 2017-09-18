@@ -51,7 +51,8 @@
                 /<(\/?)div([^>]+)>/g,
                 /<([^>]+)><br><\/([^>]+)>/g,
                 /<([^>]+)><\/([^>]+)>/g,
-                /(<p>)+/
+                /(<p>)+/,
+                /&nbsp;/g
             ], replaced = [
                 '',
                 '<$1p$2>',
@@ -61,7 +62,8 @@
                 function(all, start, end) {
                     return start === end? '': all;
                 },
-                '<p>'
+                '<p>',
+                ' '
             ];
             return function(markup) {
                 regx.forEach(function(regx, id) {
