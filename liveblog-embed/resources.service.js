@@ -159,7 +159,7 @@
             }
             return obj;
         }
-        return $resource(config.api_host + 'api/client_blogs/:blogId/posts?embedded={"syndication_in":1}', {blogId: config.blog._id}, {
+        return $resource(config.api_host + 'api/client_blogs/:blogId/posts', {blogId: config.blog._id}, {
             get: {
                 transformResponse: function(posts) {
                     // decode json
