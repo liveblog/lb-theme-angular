@@ -124,7 +124,13 @@
                  refreshCache = CacheFactory.get('refreshCache')
             }
             if (obj.commenter) {
-                obj.original_creator = {display_name: obj.commenter};
+                obj.original_creator = {
+                    display_name: obj.commenter,
+                    sign_off: obj.commenter,
+                    byline: obj.commenter
+                };
+            } else if(obj.syndicated_creator) {
+                obj.user = obj.syndicated_creator;
             } else if(obj.original_creator !== "" && obj.original_creator !== 'None'){
                 var userId = obj.original_creator;
                 if (typeof userId !== 'string') {
